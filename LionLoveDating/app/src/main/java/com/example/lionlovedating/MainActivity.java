@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference maleDb = FirebaseDatabase.getInstance().getReference().child("Users").child("Male");
         maleDb.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String a) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 if(dataSnapshot.getKey().equals(user.getUid())){
                     userSex = "Male";
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference femaleDb = FirebaseDatabase.getInstance().getReference().child("Users").child("Female");
         femaleDb.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String a) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 if(dataSnapshot.getKey().equals(user.getUid())){
                     userSex = "Female";
@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
         oppositeSexDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String a) {
-
                 if(dataSnapshot.exists()){
                     al.add(dataSnapshot.child("name").getValue().toString());
                     arrayAdapter.notifyDataSetChanged();
@@ -199,6 +198,5 @@ public class MainActivity extends AppCompatActivity {
         finish();
         return;
     }
-
 
 }
