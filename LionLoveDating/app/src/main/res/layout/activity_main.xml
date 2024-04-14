@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="30px"
         android:orientation="horizontal">
 
         <Button
@@ -23,6 +24,24 @@
             android:text="Logout"
             android:textColor="#3F51B5"
             android:textStyle="bold" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LionLove"
+            android:textAlignment="textEnd"
+            android:textColor="#FEFEFE"
+            android:textColorLink="#FEFEFE"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView

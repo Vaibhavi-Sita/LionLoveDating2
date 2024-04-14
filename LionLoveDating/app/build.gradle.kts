@@ -46,5 +46,6 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-auth")
+    implementation("androidx.cardview:cardview:1.0.0")
 
 }
