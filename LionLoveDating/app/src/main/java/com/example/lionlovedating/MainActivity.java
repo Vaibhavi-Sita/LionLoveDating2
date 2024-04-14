@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUId = mAuth.getCurrentUser().getUid();
 
+        checkUserSex();
 
         al = new ArrayList<>();
 
