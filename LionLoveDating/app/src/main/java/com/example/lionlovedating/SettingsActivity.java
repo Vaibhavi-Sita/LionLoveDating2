@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -54,6 +58,21 @@ public class SettingsActivity extends AppCompatActivity {
     private String userId, name, phone, profileImageUrl, userSex;
 
     private Uri resultUri;
+
+    ActivityResultLauncher<Intent> startActivityIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+//                    super.onActivityResult(result);
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        final Uri imageUri = data.getData();
+                        resultUri = imageUri;
+                        mProfileImage.setImageURI(resultUri);
+                    }
+                }
+            });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,9 +104,12 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                startActivityForResult(intent, 1);
+                startActivityIntent.launch(intent);
+//                startActivityForResult(intent, 1);
             }
         });
+
+
         mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +124,8 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void getUserInfo() {
         mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -127,7 +151,7 @@ public class SettingsActivity extends AppCompatActivity {
                         profileImageUrl = map.get("profileImageUrl").toString();
                         switch(profileImageUrl){
                             case "default":
-                                Glide.with(getApplication()).load(R.mipmap.profileimage).into(mProfileImage);
+                                Glide.with(getApplication()).load(R.mipmap.ic_launcher).into(mProfileImage);
                                 break;
                             default:
                                 Glide.with(getApplication()).load(profileImageUrl).into(mProfileImage);
@@ -153,7 +177,7 @@ public class SettingsActivity extends AppCompatActivity {
         userInfo.put("name", name);
         userInfo.put("phone", phone);
         mUserDatabase.updateChildren(userInfo);
-        if(resultUri != null) {
+        if(resultUri != null){
             StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
             Bitmap bitmap = null;
 
@@ -176,10 +200,10 @@ public class SettingsActivity extends AppCompatActivity {
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    String downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                    Uri downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().getResult();
 
                     Map userInfo = new HashMap();
-                    userInfo.put("profileImageUrl", downloadUrl);
+                    userInfo.put("profileImageUrl", downloadUrl.toString());
                     mUserDatabase.updateChildren(userInfo);
 
                     finish();
