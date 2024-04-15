@@ -25,6 +25,18 @@
             android:textColor="#3F51B5"
             android:textStyle="bold" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:onClick="goToSettings"
+            android:text="Settings"
+            android:textColor="#3F51B5"
+            android:textStyle="bold"
+            android:layout_marginLeft="21px"
+            android:layout_weight="1"
+            />
+
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

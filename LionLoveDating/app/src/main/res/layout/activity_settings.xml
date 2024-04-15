@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="30px"
+    android:orientation="vertical"
+    tools:context=".SettingsActivity"
+    android:padding="20sp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="71dp" />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:layout_marginBottom="20sp"
+        android:src="@mipmap/profileimage" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:background="@null"
+        android:hint="Name"
+        android:layout_marginBottom="20sp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone"
+        android:background="@null"
+        android:hint="Phone"
+        android:layout_marginBottom="20sp"
+        android:inputType="phone"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="106dp" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#3F51B5"
+        android:text="Confirm" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#3F51B5"
+        android:text="Back" />
+
+</LinearLayout>
