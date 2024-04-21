@@ -26,7 +26,7 @@
     <ImageView
         android:layout_width="257dp"
         android:layout_height="222dp"
-        android:src="@mipmap/LIO" />
+        android:src="@mipmap/lion" />
 
     <Space
         android:layout_width="match_parent"
