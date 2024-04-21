@@ -147,7 +147,7 @@ public class SettingsActivity extends AppCompatActivity {
                     if(map.get("sex")!=null){
                         userSex = map.get("sex").toString();
                     }
-//                    Glide.(mProfileImage);
+//                    Glide.clear(mProfileImage);
 //                    Glide.with(viewholder.itemView.getContext()).clear(viewHolder.getImageView());
                     Glide.with(mProfileImage.getContext()).clear(mProfileImage);
 
