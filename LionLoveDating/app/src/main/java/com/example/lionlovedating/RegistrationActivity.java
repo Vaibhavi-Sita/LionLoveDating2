@@ -26,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -78,33 +80,42 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
 
-                final String email = mEmail.getText().toString();
+                final String email= mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
                 final String name = mName.getText().toString();
 
-                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if(!task.isSuccessful()){
-                            Toast.makeText(RegistrationActivity.this, "sign_up_error", Toast.LENGTH_SHORT).show();
-                        }
+                if(!isValidPSUEmail(email)){
+                        Toast.makeText(RegistrationActivity.this, "invalid email! Sign in with a valid psu email", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        else{
-                            String userId = mAuth.getCurrentUser().getUid();
-                            DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(radioButton.getText().toString()).child(userId);
-                            Map userInfo = new HashMap<>();
-                            userInfo.put("name", name);
-                            userInfo.put("profileImageUrl", "default");
-                            currentUserDb.updateChildren(userInfo);
+
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(RegistrationActivity.this, "sign_up_error", Toast.LENGTH_SHORT).show();
+                            }
+
+                            else {
+                                String userId = mAuth.getCurrentUser().getUid();
+                                DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+                                Map userInfo = new HashMap<>();
+                                userInfo.put("name", name);
+                                userInfo.put("sex", radioButton.getText().toString());
+                                userInfo.put("profileImageUrl", "default");
+                                currentUserDb.updateChildren(userInfo);
+                            }
                         }
-                    }
-                });
+                    });
+                }
 
             }
         });
 
     }
+
 
     @Override
     protected void onStart() {
@@ -117,5 +128,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
         super.onStop();
         mAuth.removeAuthStateListener(firebaseAuthSateListener);
+    }
+
+    public static boolean isValidPSUEmail(String email) {
+        // Regex pattern to match "abc1234@psu.edu"
+        String regex = "^[a-z]{3}\\d{4}@psu\\.edu$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        // Returning true if email matches the pattern, otherwise false
+        return matcher.matches();
     }
 }

@@ -8,7 +8,8 @@
     android:layout_margin="30px"
     android:orientation="vertical"
     tools:context=".SettingsActivity"
-    android:padding="20sp">
+    android:padding="20sp"
+    android:gravity="center">
 
     <Space
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
         android:layout_width="200sp"
         android:layout_height="200sp"
         android:layout_marginBottom="20sp"
-        android:src="@mipmap/profileimage" />
+        android:src="@mipmap/lion" />
 
     <EditText
         android:layout_width="match_parent"

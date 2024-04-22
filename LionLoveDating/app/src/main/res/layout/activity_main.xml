@@ -13,18 +13,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px"
+        android:layout_marginBottom="0px"
         android:orientation="horizontal"
         android:gravity="center">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21px"
-            android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
+            android:drawableLeft="@android:drawable/ic_menu_preferences"
+            android:drawableTint="#011840"
             android:onClick="goToSettings"
-            android:text="Settings"
             android:textColor="#3F51B5"
             android:textStyle="bold" />
 
@@ -55,6 +57,33 @@
         <!--            android:textSize="24sp"-->
         <!--            android:textStyle="bold" />-->
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_marginRight="30px"
+            android:onClick="goToMatches"
+            android:text="Matches"
+            android:textColor="#3F51B5"
+            android:textStyle="bold"
+            />
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/white"-->
+<!--            android:layout_marginLeft="30px"-->
+<!--            android:onClick="logoutUser"-->
+<!--            android:text="Matches"-->
+<!--            android:textColor="#3F51B5"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
     </LinearLayout>
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView

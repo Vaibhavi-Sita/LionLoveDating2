@@ -87,7 +87,7 @@ public class SettingsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        String userSex = getIntent().getExtras().getString("userSex");
+//        String userSex = getIntent().getExtras().getString("userSex");
         mNameField = (EditText) findViewById(R.id.name);
         mPhoneField = (EditText) findViewById(R.id.phone);
 
@@ -99,7 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userSex).child(userId);
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
         getUserInfo();
 
@@ -195,8 +195,17 @@ public class SettingsActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
             byte[] data = baos.toByteArray();
 
+//            UploadTask uploadTask = filepath.putBytes(data);
             UploadTask uploadTask = filepath.putBytes(data);
 
+
+//            if(uploadTask.){
+//                Uri downloadUrl =  uploadTask.getResult().getMetadata().getReference().getDownloadUrl().getResult();
+//                Map updatedUserInfo = new HashMap();
+//                userInfo.put("profileImageUrl", downloadUrl.toString());
+//                mUserDatabase.updateChildren(updatedUserInfo);
+//                finish();
+//            }
             uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {

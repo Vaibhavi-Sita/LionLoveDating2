@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Matches.MatchesActivity"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Matches"
+        android:textAlignment="textStart"
+        android:textColor="#1F417C"
+        android:textColorLink="#1F417C"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_margin="30px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+<!--        <ImageView-->
+<!--            android:layout_width="102dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:src="@mipmap/lion" />-->
+<!--        <Button-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:backgroundTint="#FFFFFF"-->
+<!--            android:drawableLeft="@android:drawable/ic_menu_preferences"-->
+<!--            android:onClick="onCreate"-->
+<!--            android:textColor="#3F51B5"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <Button-->
+<!--            android:layout_width="205dp"-->
+<!--            android:layout_height="214dp"-->
+<!--            android:backgroundTint="#FFFFFF"-->
+<!--            android:drawableLeft="@mipmap/lion"-->
+<!--            android:onClick="onCreate"-->
+<!--            android:textColor="#3F51B5"-->
+<!--            android:textStyle="bold" />-->
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerView"
+            android:scrollbars="vertical">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
